@@ -11,6 +11,13 @@ SECTIONS
         *(.text .text.*)
     }
     . = ALIGN(4K);
+    .bss : {
+        start_bss = .;
+        *(.bss .bss.*)
+        *(.sbss .sbss.*)
+        end_bss = .;
+    }
+    . = ALIGN(4K);
     .rodata : {
         *(.rodata .rodata.*)
         *(.srodata .srodata.*)
@@ -19,12 +26,6 @@ SECTIONS
     .data : {
         *(.data .data.*)
         *(.sdata .sdata.*)
-    }
-    .bss : {
-        start_bss = .;
-        *(.bss .bss.*)
-        *(.sbss .sbss.*)
-        end_bss = .;
     }
     /DISCARD/ : {
         *(.eh_frame)
