@@ -54,6 +54,7 @@ pre:
 build: clean pre binary
 	@$(foreach t, $(ELFS), cp $(t).bin $(BUILD_DIR)/bin/;)
 	@$(foreach t, $(ELFS), cp $(t).elf $(BUILD_DIR)/elf/;)
+	@cd $(BUILD_DIR)/bin/ && for i in *.bin; do mv -i $$i `basename $$i .bin`; done
 
 clean:
 	@cargo clean
